@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Entry ❤️</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffeef2;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .login-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 320px;
+            border: 2px solid white;
+        }
+
+        h2 { color: #d63384; margin-bottom: 1rem; }
+
+        p.hint {
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        input {
+            width: 85%;
+            padding: 12px;
+            margin-bottom: 1.5rem;
+            border: 2px solid #ffc2d1;
+            border-radius: 10px;
+            outline: none;
+            font-size: 1rem;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        input:focus { border-color: #ff4d6d; }
+
+        button {
+            background-color: #ff4d6d;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            width: 95%;
+            transition: transform 0.2s;
+        }
+
+        button:active { transform: scale(0.95); }
+
+        #error-msg {
+            color: #ff4d6d;
+            font-size: 0.85rem;
+            margin-top: 15px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h2>Enter Passcode ❤️</h2>
+        <p class="hint">Our first "real" date location?</p>
+        <input type="password" id="passwordField" placeholder="Type here...">
+        <button onclick="checkPassword()">Unlock</button>
+        <p id="error-msg">Incorrect passcode, try again! 🫣</p>
+    </div>
+
+    <script>
+        function checkPassword() {
+            // Cleans up the input (removes extra spaces and makes it lowercase)
+            const input = document.getElementById('passwordField').value.toLowerCase().trim();
+            
+            // The list of correct versions
+            const validPasswords = ["olive garden", "olivegarden", "og"]; 
+
+            if (validPasswords.includes(input)) {
+                // Redirects to your love.html page
+                window.location.href = "love.html";
+            } else {
+                // Shows the error message and clears the field
+                document.getElementById('error-msg').style.display = 'block';
+                document.getElementById('passwordField').value = '';
+                
+                // Quick shake animation on the card
+                const card = document.querySelector('.login-card');
+                card.style.transform = "translateX(5px)";
+                setTimeout(() => card.style.transform = "translateX(-5px)", 100);
+                setTimeout(() => card.style.transform = "translateX(0)", 200);
+            }
+        }
+
+        // Allows Abby to just hit the "Enter" key to submit
+        document.getElementById('passwordField').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    </script>
+</body>
+</html>
